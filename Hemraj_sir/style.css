@@ -246,7 +246,7 @@ button {
 
 .card-box {
   display: block;
-  height: 400px;
+  min-height: 400px;
 }
 
 .card {
@@ -255,13 +255,20 @@ button {
   z-index: 1;
   height: 200px;
   width: 350px;
-  margin: 10vh auto;
+  scale: 1.4;
+  margin: 20vh auto;
   padding: 20px 10px 10px 10px;
   transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg);
   /*transform-origin: 50% 100%;*/
   box-shadow: 0;
   transition: transform .4s ease,
     box-shadow .4s ease;
+}
+@media (max-width: 1024px) {
+  .card{
+    scale: 1;
+    margin: 10vh auto;
+    }
 }
 
 .card:hover {
@@ -486,7 +493,15 @@ p {
 section {
   padding: 2rem 9%;
 }
-
+.skill{
+align-items: center;
+margin: auto 200px;
+}
+@media (max-width: 1024px) {
+  .skill{
+    margin: auto 20px;
+    }
+}
 #work-experience .sectiontitle .headerLine {
   width: 280px;
 }
