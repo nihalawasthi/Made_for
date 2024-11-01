@@ -1,0 +1,727 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 300vh;
+    width: 100vw;
+    overflow-x: hidden;
+    background: #000000;
+}
+
+body::-webkit-scrollbar {
+    background-color: transparent;
+    width: 0.4vw;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  body::-webkit-scrollbar-track:hover {
+    background-color: transparent;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 5px solid transparent;
+  }
+  
+  body::-webkit-scrollbar-thumb:hover {
+    background-color: #a0a0a5;
+  }
+  
+  body::-webkit-scrollbar-button {
+    display: none;
+  }
+.background-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(36, 36, 36, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 999998;
+  }
+
+/* From Uiverse.io by Nawsome */ 
+.wheel-and-hamster {
+  --dur: 1s;
+  position: relative;
+  width: 12em;
+  height: 12em;
+  font-size: 14px;
+}
+
+.wheel,
+.hamster,
+.hamster div,
+.spoke {
+  position: absolute;
+}
+
+.wheel,
+.spoke {
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wheel {
+  background: radial-gradient(100% 100% at center,hsla(0,0%,60%,0) 47.8%,hsl(0,0%,60%) 48%);
+  z-index: 2;
+}
+
+.hamster {
+  animation: hamster var(--dur) ease-in-out infinite;
+  top: 50%;
+  left: calc(50% - 3.5em);
+  width: 7em;
+  height: 3.75em;
+  transform: rotate(4deg) translate(-0.8em,1.85em);
+  transform-origin: 50% 0;
+  z-index: 1;
+}
+
+.hamster__head {
+  animation: hamsterHead var(--dur) ease-in-out infinite;
+  background: hsl(30,90%,55%);
+  border-radius: 70% 30% 0 100% / 40% 25% 25% 60%;
+  box-shadow: 0 -0.25em 0 hsl(30,90%,80%) inset,
+		0.75em -1.55em 0 hsl(30,90%,90%) inset;
+  top: 0;
+  left: -2em;
+  width: 2.75em;
+  height: 2.5em;
+  transform-origin: 100% 50%;
+}
+
+.hamster__ear {
+  animation: hamsterEar var(--dur) ease-in-out infinite;
+  background: hsl(0,90%,85%);
+  border-radius: 50%;
+  box-shadow: -0.25em 0 hsl(30,90%,55%) inset;
+  top: -0.25em;
+  right: -0.25em;
+  width: 0.75em;
+  height: 0.75em;
+  transform-origin: 50% 75%;
+}
+
+.hamster__eye {
+  animation: hamsterEye var(--dur) linear infinite;
+  background-color: hsl(0,0%,0%);
+  border-radius: 50%;
+  top: 0.375em;
+  left: 1.25em;
+  width: 0.5em;
+  height: 0.5em;
+}
+
+.hamster__nose {
+  background: hsl(0,90%,75%);
+  border-radius: 35% 65% 85% 15% / 70% 50% 50% 30%;
+  top: 0.75em;
+  left: 0;
+  width: 0.2em;
+  height: 0.25em;
+}
+
+.hamster__body {
+  animation: hamsterBody var(--dur) ease-in-out infinite;
+  background: hsl(30,90%,90%);
+  border-radius: 50% 30% 50% 30% / 15% 60% 40% 40%;
+  box-shadow: 0.1em 0.75em 0 hsl(30,90%,55%) inset,
+		0.15em -0.5em 0 hsl(30,90%,80%) inset;
+  top: 0.25em;
+  left: 2em;
+  width: 4.5em;
+  height: 3em;
+  transform-origin: 17% 50%;
+  transform-style: preserve-3d;
+}
+
+.hamster__limb--fr,
+.hamster__limb--fl {
+  clip-path: polygon(0 0,100% 0,70% 80%,60% 100%,0% 100%,40% 80%);
+  top: 2em;
+  left: 0.5em;
+  width: 1em;
+  height: 1.5em;
+  transform-origin: 50% 0;
+}
+
+.hamster__limb--fr {
+  animation: hamsterFRLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30,90%,80%) 80%,hsl(0,90%,75%) 80%);
+  transform: rotate(15deg) translateZ(-1px);
+}
+
+.hamster__limb--fl {
+  animation: hamsterFLLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30,90%,90%) 80%,hsl(0,90%,85%) 80%);
+  transform: rotate(15deg);
+}
+
+.hamster__limb--br,
+.hamster__limb--bl {
+  border-radius: 0.75em 0.75em 0 0;
+  clip-path: polygon(0 0,100% 0,100% 30%,70% 90%,70% 100%,30% 100%,40% 90%,0% 30%);
+  top: 1em;
+  left: 2.8em;
+  width: 1.5em;
+  height: 2.5em;
+  transform-origin: 50% 30%;
+}
+
+.hamster__limb--br {
+  animation: hamsterBRLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30,90%,80%) 90%,hsl(0,90%,75%) 90%);
+  transform: rotate(-25deg) translateZ(-1px);
+}
+
+.hamster__limb--bl {
+  animation: hamsterBLLimb var(--dur) linear infinite;
+  background: linear-gradient(hsl(30,90%,90%) 90%,hsl(0,90%,85%) 90%);
+  transform: rotate(-25deg);
+}
+
+.hamster__tail {
+  animation: hamsterTail var(--dur) linear infinite;
+  background: hsl(0,90%,85%);
+  border-radius: 0.25em 50% 50% 0.25em;
+  box-shadow: 0 -0.2em 0 hsl(0,90%,75%) inset;
+  top: 1.5em;
+  right: -0.5em;
+  width: 1em;
+  height: 0.5em;
+  transform: rotate(30deg) translateZ(-1px);
+  transform-origin: 0.25em 0.25em;
+}
+
+.spoke {
+  animation: spoke var(--dur) linear infinite;
+  background: radial-gradient(100% 100% at center,hsl(0,0%,60%) 4.8%,hsla(0,0%,60%,0) 5%),
+		linear-gradient(hsla(0,0%,55%,0) 46.9%,hsl(0,0%,65%) 47% 52.9%,hsla(0,0%,65%,0) 53%) 50% 50% / 99% 99% no-repeat;
+}
+
+/* Animations */
+@keyframes hamster {
+  from, to {
+    transform: rotate(4deg) translate(-0.8em,1.85em);
+  }
+
+  50% {
+    transform: rotate(0) translate(-0.8em,1.85em);
+  }
+}
+
+@keyframes hamsterHead {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(0);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes hamsterEye {
+  from, 90%, to {
+    transform: scaleY(1);
+  }
+
+  95% {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes hamsterEar {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(0);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes hamsterBody {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(0);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(-2deg);
+  }
+}
+
+@keyframes hamsterFRLimb {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(50deg) translateZ(-1px);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(-30deg) translateZ(-1px);
+  }
+}
+
+@keyframes hamsterFLLimb {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(-30deg);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(50deg);
+  }
+}
+
+@keyframes hamsterBRLimb {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(-60deg) translateZ(-1px);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(20deg) translateZ(-1px);
+  }
+}
+
+@keyframes hamsterBLLimb {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(20deg);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(-60deg);
+  }
+}
+
+@keyframes hamsterTail {
+  from, 25%, 50%, 75%, to {
+    transform: rotate(30deg) translateZ(-1px);
+  }
+
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: rotate(10deg) translateZ(-1px);
+  }
+}
+
+@keyframes spoke {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(-1turn);
+  }
+}
+
+section{
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.hero{
+  position: fixed;
+  top: 0;
+}
+
+.hero-cont {
+  height: 100vh;
+  background: linear-gradient(
+      to right, 
+      #ffffff 0%, 
+      #ffffff 70%, 
+      #000000 70%, 
+      #000000 100%
+  );
+  display: flex;
+  font-family: monospace;
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1;
+}
+
+.hero .container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.left, .right {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8rem;
+    font-family: 'Arial', sans-serif;
+    z-index: 2;
+    overflow: hidden;
+    position: relative;
+}
+
+.left {
+    background-color: #ffffff;
+    transform: skewX(-20deg);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 5%;
+}
+
+.right {
+    background-color: #000000;
+    color: #ffffff;
+    transform: skewX(-30deg);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5%;
+}
+
+.right p, .left p{
+    text-align: center;
+    position: absolute;
+    right: 0;
+    width: 100vw;
+    transform: skewX(30deg);
+    margin: 0;
+    z-index: 5000;
+}
+.left p{
+    left: 0;
+}
+.cursor {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+}
+
+.cursor__ball {
+    position: fixed;
+    mix-blend-mode: difference;
+    pointer-events: none;
+}
+
+.cursor__ball--big circle,
+.cursor__ball--small circle {
+    fill: #ffffff;
+}
+
+.cursor__ball--big.in-left circle,
+.cursor__ball--small.in-left circle {
+    fill: #000000;
+}
+
+.cursor__ball--big.in-right circle,
+.cursor__ball--small.in-right circle {
+    fill: #ffffff;
+}
+
+.image-container {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.slide {
+  position: absolute;
+  bottom: 30px;
+  right: -100%;
+  width: 55%;
+  height: auto;
+  animation: slideIn 1.5s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+      right: -100%;
+  }
+  to {
+      right: 0;
+  }
+}
+
+.socials {
+  position: absolute;
+  top: 3vh;
+  left: 10px;
+  z-index: 1000;
+  animation: slided 1.5s ease-out forwards;
+}
+
+.socials a {
+  font-size: 25px;
+  text-decoration: none;
+  color: #000000;
+}
+
+.icon:hover {
+  transform: translateX(-3px) scale(1.3);
+}
+
+.socials .icon {
+  padding: 0 10px;
+  width: 45px;
+  height: 45px;
+}
+
+@keyframes slided {
+    from {
+        top: -100%;
+    }
+    to {
+        top: 3vh;
+    }
+}
+
+/* about*/
+
+#about {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000000;
+  color: #fff;
+  z-index: 90;
+  width: 100vw;
+  position: fixed;
+  top: 100vh;
+  transition: top 1s ease-in-out;
+}
+
+#about.slide-up {
+  position: fixed;
+  top: 0;
+}
+
+#about img{
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  height: 100vh;
+}
+
+#about .tags{
+  text-align: center;
+  position: absolute;
+  width: 70vw;
+  height: 90vh;
+  left: 0;
+  bottom: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tags .container {
+  width: 100%;
+  height: 90%;
+  margin: 5% auto;
+}
+.terminal-container {
+  margin: auto;
+  width: 80%;
+  height: 100%;
+  background: #000;
+  border: 0.5px solid #ccc;
+  border-radius: 7px;
+}
+
+.terminal-header {
+  width: 100%;
+  height: 25px;
+  border-radius: 5px 5px 0 0;
+}
+
+.buttons {
+  grid-column-gap: 1px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.buttons .btn {
+  float: left;
+  margin-left: 7px;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+}
+
+.terminal-content {
+  width: 90%;
+  height: 80%;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 20px;
+  line-height: 1;
+  text-align: left;
+  color: #585353;
+  background: #000;
+  border: none;
+  padding: 15px;
+  resize: none;
+  outline: none;
+  overflow-y: auto;
+}
+.terminal-content a{
+  color: blue;
+  cursor: pointer;
+}
+span {
+  color: #ffffff;
+}
+
+.red {
+  background: red;
+}
+.green {
+  background: green;
+}
+.yellow {
+  background: yellow;
+}
+
+#about .content{
+  position: absolute;
+  bottom: -10vh;
+  right: 30px;
+  height: 90vh;
+}
+
+#img{
+  transform: scale(0.8);
+  width: 30vw;
+  height: 110vh;
+}
+#about .koala-top{
+  position: absolute;
+  height: 50%;
+  top: -80px;
+  right: 0;
+}
+
+#about .koala-bottom{
+  position: absolute;
+  height: 50%;
+  bottom: -80px;
+  left: 0;
+}
+/* project*/
+
+#project {
+  height: 200vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;           
+  background-color: #ffffff;
+  background-image:
+  repeating-linear-gradient(
+      to right, transparent 0 100px,
+      #25283b22 100px 101px
+  ),
+  repeating-linear-gradient(
+      to bottom, transparent 0 100px,
+      #25283b22 100px 101px
+  );;
+  background: #ffffff;
+  color: #000000;
+  z-index: 90;
+  width: 100vw;
+  position: fixed;
+  top: 100vh;
+  transition: top 1s ease-in-out;
+}
+/*
+#project::before{
+  position: absolute;
+  width: min(1400px, 90vw);
+  top: 10%;
+  left: 50%;
+  height: 90%;
+  transform: translateX(-50%);
+  content: '';
+  background-image: url(images/bg.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  pointer-events: none;
+}
+*/
+#project.slide-up {
+  top: 0;
+}
+
+.banner{
+  width: 100%;
+  height: 90vh;
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  top: 10%;
+}
+.banner .slider{
+  position: absolute;
+  width: 160px;
+  height: 200px;
+  left: calc(50% - 80px);
+  top: 10%;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  animation: autoRun 20s linear infinite;
+  z-index: 2;
+}
+@keyframes autoRun{
+  from{
+      transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+  }to{
+      transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+  }
+}
+
+.banner .slider .item{
+  position: absolute;
+  inset: 0 0 0 0;
+  transform: 
+  rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+  translateZ(300px);
+}
+.banner .slider .item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 767px) {
+  .banner .slider{
+      width: 100px;
+      height: 150px;
+      left: calc(50% - 50px);
+  }
+  .banner .slider .item{
+      transform: 
+          rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+          translateZ(180px);
+  }
+  .banner .content h1{
+      font-size: 5em;
+  }
+}

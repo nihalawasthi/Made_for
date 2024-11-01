@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranav</title>
+    <link rel="shortcut icon" href="public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.58/build/spline-viewer.js"></script>
+</head>
+
+<body>
+    <div class="cursor">
+        <div class="cursor__ball cursor__ball--big">
+            <svg height="30" width="30">
+                <circle cx="15" cy="15" r="12" stroke-width="0"></circle>
+            </svg>
+        </div>
+        <div class="cursor__ball cursor__ball--small">
+            <svg height="10" width="10">
+                <circle cx="5" cy="5" r="4" stroke-width="0"></circle>
+            </svg>
+        </div>
+    </div>
+
+    <div class="background-loader">
+        <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+        	<div class="wheel"></div>
+        	<div class="hamster">
+        		<div class="hamster__body">
+        			<div class="hamster__head">
+        				<div class="hamster__ear"></div>
+        				<div class="hamster__eye"></div>
+        				<div class="hamster__nose"></div>
+        			</div>
+        			<div class="hamster__limb hamster__limb--fr"></div>
+        			<div class="hamster__limb hamster__limb--fl"></div>
+        			<div class="hamster__limb hamster__limb--br"></div>
+        			<div class="hamster__limb hamster__limb--bl"></div>
+        			<div class="hamster__tail"></div>
+        		</div>
+        	</div>
+        	<div class="spoke"></div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-cont">
+            <div class="container">
+                <div class="left">
+                    <p>プラナフ</p>
+                </div>
+                <div class="right">
+                    <p>プラナフ</p>
+                </div>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="public/d2.png" class="slide">
+        </div>
+    </section>
+
+    <div class="socials">
+        <a href="https://github.com/HumerousFi">
+            <i class="fa fa-github icon" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.instagram.com/pinup_chaturvedi/">
+            <i class="fa fa-instagram icon" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/pranav-chaturvedi-1b31a8244">
+            <i class="fa fa-linkedin icon" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <section id="about">
+        <div id="container" class="content">
+            <spline-viewer id="img"
+                url="https://prod.spline.design/F5BCQp6ESUzMJFJG/scene.splinecode"></spline-viewer>
+        </div>
+        <div class="tags">
+            <div class="container">
+                <div class="terminal-container">
+                    <div class="terminal-header">
+                        <div class="buttons">
+                            <div class="btn red"></div>
+                            <div class="btn yellow"></div>
+                            <div class="btn green"></div>
+                        </div>
+                        <h4>About</h4>
+                    </div>
+                    <div class="terminal-content" id="terminal">
+                        <p>(user㉿HumerousFi)-[~] $ <span class="input" contenteditable="true"></span></p>
+                    </div>
+                    <!-- Koalas -->
+                    <img src="public/b1.png" class="koala-top">
+                    <img src="public/b2.png" class="koala-bottom">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="project">
+        <div class="banner">
+            <div class="slider" style="--quantity: 10">
+                <div class="item" style="--position: 1"><a href="#"><img src="" alt=""></div></a>
+                <div class="item" style="--position: 2"><a href="#"><img src="" alt=""></div></a>
+                <div class="item" style="--position: 3"><a href="#"><img src="" alt=""></div></a>
+                <div class="item" style="--position: 4"><a href="#"><img src="" alt=""></div></a>
+                <div class="item" style="--position: 5"><a href="#"><img src="" alt=""></div></a>
+                <div class="item" style="--position: 6"><a href="#"><img src="" alt=""></div></a>
+                <div class="item" style="--position: 7"><a href="#"><img src="" alt=""></div></a>
+                <div class="item" style="--position: 8"><a href="#"><img src="" alt=""></div></a>
+                <div class="item" style="--position: 9"><a href="#"><img src="" alt=""></div></a>
+                <div class="item" style="--position: 10"><a href="#"><img src="" alt=""></div></a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('load', function () {
+            document.querySelector('.background-loader').style.display = 'none';
+        });
+        window.addEventListener('scroll', function () {
+            const aboutSection = document.querySelector('#about');
+            const projectSection = document.querySelector('#project');
+            const scrollPosition = window.scrollY;
+
+            //about section
+            if (scrollPosition > window.innerHeight / 2) {
+                aboutSection.classList.add('slide-up');
+            } else {
+                aboutSection.classList.remove('slide-up');
+            }
+
+            //project section
+            if (scrollPosition > window.innerHeight * 1.5) {
+                projectSection.classList.add('slide-up');
+            } else {
+                projectSection.classList.remove('slide-up');
+            }
+        });
+
+    </script>
+
+    <script src="js/cursor.js"></script>
+    <script src="js/about.js"></script>
+</body>
+
+</html>
